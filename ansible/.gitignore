@@ -1,0 +1,5 @@
+host_vars/
+fact-cache/
+
+# We *do* want the templates, even if they seem to be private files.
+!templates/*

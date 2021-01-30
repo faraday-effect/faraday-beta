@@ -1,0 +1,13 @@
+{
+  "name": "faraday",
+  "version": "0.1.0",
+  "description": "Actionable Educational Intelligence",
+  "main": "index.js",
+  "repository": "https://github.com/faraday-effect/faraday.git",
+  "author": "Tom Nurkkala <tnurkkala@cse.taylor.edu>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
