@@ -10,6 +10,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { Project } from "./project/entities";
 import { ProjectModule } from "./project/project.module";
 import { AuthModule } from "./auth/auth.module";
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     EntryModule,
     ProjectModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
