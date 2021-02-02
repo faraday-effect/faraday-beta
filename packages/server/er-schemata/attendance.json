@@ -1,0 +1,34 @@
+{
+  "entity": {
+    "name": "Attendance",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "signedIn",
+        "type": "string",
+        "description": "Time attendee signed in"
+      },
+      {
+        "name": "signedOut",
+        "type": "string",
+        "description": "Time attendee signed out"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "account",
+      "type": "manyToOne",
+      "to": "Account",
+      "nullable": false,
+      "description": "Account that attended"
+    },
+    {
+      "name": "offering",
+      "type": "manyToOne",
+      "to": "Offering",
+      "nullable": false,
+      "description": "Course offering attended"
+    }
+  ]
+}
