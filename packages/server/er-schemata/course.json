@@ -1,0 +1,37 @@
+{
+  "entity": {
+    "name": "course",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "number",
+        "type": "string",
+        "description": "Course number (e.g., COS 243)"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "Course description"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "Is course active?"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "projects",
+      "type": "oneToMany",
+      "to": "Project",
+      "description": "Projects for this course"
+    },
+    {
+      "name": "offerings",
+      "type": "oneToMany",
+      "to": "Offering",
+      "description": "Offerings of this course"
+    }
+  ]
+}

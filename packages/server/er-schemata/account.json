@@ -1,0 +1,54 @@
+{
+  "entity": {
+    "name": "Account",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "email",
+        "type": "string",
+        "description": "Email address"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "description": "Password"
+      },
+      {
+        "name": "firstName",
+        "type": "string",
+        "description": "First name"
+      },
+      {
+        "name": "lastName",
+        "type": "string",
+        "description": "Last name"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "entries",
+      "type": "oneToMany",
+      "to": "Entry",
+      "description": "Entries made by this account"
+    },
+    {
+      "name": "projects",
+      "type": "manyToMany",
+      "to": "Project",
+      "description": "Projects for this account"
+    },
+    {
+      "name": "roles",
+      "type": "manyToMany",
+      "to": "Role",
+      "description": "Roles for this account"
+    },
+    {
+      "name": "offerings",
+      "type": "manyToManyOwner",
+      "to": "Offering",
+      "description": "Courses in which this account is enrolled"
+    }
+  ]
+}

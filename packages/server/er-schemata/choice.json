@@ -1,0 +1,45 @@
+{
+  "entity": {
+    "name": "Choice",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "label",
+        "type": "string",
+        "description": "Label (e.g., `A` or `T`)"
+      },
+      {
+        "name": "isCorrect",
+        "type": "boolean",
+        "description": "Whether this choice is correct"
+      },
+      {
+        "name": "content",
+        "type": "string",
+        "description": "Content of this choice"
+      },
+      {
+        "name": "feedback",
+        "type": "string",
+        "nullable": true,
+        "description": "Feedback when chosen"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "question",
+      "type": "manyToOne",
+      "to": "Question",
+      "nullable": false,
+      "description": "Question for which this is a choice"
+    },
+    {
+      "name": "accounts",
+      "type": "manyToMany",
+      "to": "Account",
+      "description": "Accounts that chose this choice"
+    }
+
+  ]
+}

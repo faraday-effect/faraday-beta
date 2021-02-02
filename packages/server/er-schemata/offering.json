@@ -1,0 +1,28 @@
+{
+  "entity": {
+    "name": "Offering",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "Title of this offering"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "course",
+      "type": "manyToOne",
+      "to": "Course",
+      "nullable": false,
+      "description": "Course of this offering"
+    },
+    {
+      "name": "students",
+      "type": "manyToMany",
+      "to": "Account",
+      "description": "Students enrolled in this course offering"
+    }
+  ]
+}

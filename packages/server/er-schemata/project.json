@@ -1,0 +1,44 @@
+{
+  "entity": {
+    "name": "Project",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "Project title"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "description": "Description of this project"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "Is this project active?"
+      },
+      {
+        "name": "entryCount",
+        "type": "integer",
+        "description": "Number of entries for this project",
+        "nullable": true,
+        "isDbColumn": false
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "entries",
+      "type": "oneToMany",
+      "to": "Entry",
+      "description": "Entries for this project"
+    },
+    {
+      "name": "accounts",
+      "type": "manyToManyOwner",
+      "to": "Account",
+      "description": "Accounts for this project"
+    }
+  ]
+}

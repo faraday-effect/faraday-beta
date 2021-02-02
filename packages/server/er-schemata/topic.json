@@ -1,0 +1,33 @@
+{
+  "entity": {
+    "name": "Topic",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "Topic title"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "description": "Topic description"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "unit",
+      "type": "manyToOne",
+      "to": "Unit",
+      "nullable": false,
+      "description": "Course unit for this topic"
+    },
+    {
+      "name": "questions",
+      "type": "oneToMany",
+      "to": "Question",
+      "description": "Questions for this topic"
+    }
+  ]
+}

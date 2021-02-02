@@ -1,0 +1,33 @@
+{
+  "entity": {
+    "name": "Unit",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": "Unit title"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "description": "Unit description"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "offering",
+      "type": "manyToOne",
+      "to": "Offering",
+      "nullable": false,
+      "description": "Course offering for this unit"
+    },
+    {
+      "name": "topics",
+      "type": "oneToMany",
+      "to": "Topic",
+      "description": "Topics in this unit"
+    }
+  ]
+}

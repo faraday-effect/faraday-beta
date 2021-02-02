@@ -1,0 +1,38 @@
+{
+  "entity": {
+    "name": "question",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "type",
+        "type": "string",
+        "description": "Question type"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": "Title of this question"
+      },
+      {
+        "name": "content",
+        "type": "text",
+        "description": "Question content"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "topic",
+      "type": "manyToOne",
+      "to": "Topic",
+      "nullable": false,
+      "description": "Topic for this question"
+    },
+    {
+      "name": "choice",
+      "type": "oneToMany",
+      "to": "Choice",
+      "description": "Choices for this question"
+    }
+  ]
+}
