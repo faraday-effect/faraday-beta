@@ -3,7 +3,7 @@
 module.exports = {
   client: {
     service: {
-      name: "time-machine-client",
+      name: "faraday-client",
       localSchemaFile: "../server/schema.graphql",
     },
   },

@@ -9,6 +9,8 @@ import Password from "@/pages/Password.vue";
 import Roles from "@/pages/Roles.vue";
 
 import get from "lodash/get";
+import SocketStuff from "@/pages/SocketStuff.vue";
+import Home from "@/pages/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -16,6 +18,10 @@ const routes = [
   { path: "/sign-up", name: "signup", component: SignUp },
   { path: "/change-password", name: "password", component: Password },
   { path: "/log-in", name: "login", component: LogIn },
+
+  { path: "/", name: "home", component: Home },
+
+  { path: "/socket-stuff", name: "socket-stuff", component: SocketStuff },
 
   // Available to any logged-in account
 
