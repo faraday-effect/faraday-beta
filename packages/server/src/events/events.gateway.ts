@@ -1,53 +1,50 @@
 import {
+  ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
   OnGatewayDisconnect,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
-  WsResponse,
 } from '@nestjs/websockets';
 import { Client, Server } from 'socket.io';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { SimpleAccount, SocketConnections } from './SocketConnections';
 
 @WebSocketGateway()
 export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() private server: Server;
-  private static connectionCount = 0;
 
-  constructor() {
+  constructor(private socketConnections: SocketConnections) {
     // setInterval(() => this.server.emit('now', new Date()), 2000);
   }
 
-  handleConnection(client: Client, ...args): any {
-    console.log('CONNECT', client.id);
-    EventsGateway.connectionCount++;
+  dumpConnections(msge: string, client: Client) {
+    console.log(`${msge} ${client.id} - ${this.socketConnections.count}`);
+    if (this.socketConnections.count > 0) {
+      console.log(this.socketConnections.allConnections().join('\n'));
+    }
+
+    // this.server
+    //   .of('/')
+    //   .emit('currentConnections', this.socketConnections.allConnections());
   }
 
-  handleDisconnect(client: Client): any {
-    console.log('DISCONNECT', client.id);
-    EventsGateway.connectionCount--;
+  handleConnection(client: Client, ...args): void {
+    this.socketConnections.addConnection(client);
+    this.dumpConnections('CONNECT', client);
+  }
+
+  handleDisconnect(client: Client): void {
+    this.socketConnections.removeConnection(client);
+    this.dumpConnections('DISCONNECT', client);
   }
 
   @SubscribeMessage('log-in')
-  async handleLogIn(@MessageBody() data: any): Promise<number> {
-    console.log('LOGIN', data);
-    return EventsGateway.connectionCount;
-  }
-
-  @SubscribeMessage('events')
-  findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-    return from([1, 2, 3]).pipe(
-      map((item) => ({
-        event: 'events',
-        data: item,
-      })),
-    );
-  }
-
-  @SubscribeMessage('identity')
-  async identity(@MessageBody() data: number): Promise<number> {
-    return data;
+  async handleLogIn(
+    @MessageBody() data: SimpleAccount,
+    @ConnectedSocket() client: Client,
+  ) {
+    this.socketConnections.findConnection(client).setAccount(data);
+    this.dumpConnections('LOG IN', client);
   }
 }

@@ -22,7 +22,7 @@
           <v-list-item :to="{ name: 'projects' }"> Projects </v-list-item>
           <v-list-item :to="{ name: 'grader' }"> Grader </v-list-item>
         </template>
-        <v-list-item :to="{ name: 'home' }"> Entries </v-list-item>
+        <v-list-item :to="{ name: 'home' }" exact> Entries </v-list-item>
         <v-list-item :to="{ name: 'reports' }"> Reports </v-list-item>
 
         <v-divider />

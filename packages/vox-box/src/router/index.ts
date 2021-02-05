@@ -2,13 +2,13 @@ import Vue from "vue";
 import VueRouter, { RouteRecord } from "vue-router";
 import vuexStore from "@/store";
 
+import get from "lodash/get";
+
 import LogIn from "@/pages/LogIn.vue";
 import SignUp from "@/pages/SignUp.vue";
 import NotFound from "@/pages/NotFound.vue";
 import Password from "@/pages/Password.vue";
 import Roles from "@/pages/Roles.vue";
-
-import get from "lodash/get";
 import SocketStuff from "@/pages/SocketStuff.vue";
 import Home from "@/pages/Home.vue";
 

@@ -9,12 +9,17 @@ import {
 Vue.use(Vuex);
 
 export class State {
-  token: string = "";
+  token = "";
   claims: JWTClaims = {} as JWTClaims;
-  darkMode: boolean = true;
+  socketId = "";
+  darkMode = true;
 }
 
 const getters = <GetterTree<State, any>>{
+  haveSocket(state) {
+    return state.socketId.length > 0;
+  },
+
   isLoggedIn(state) {
     return state.token.length > 0;
   },
@@ -35,6 +40,14 @@ const mutations = <MutationTree<State>>{
   logOut(state) {
     state.token = "";
     state.claims = {} as JWTClaims;
+  },
+
+  socketConnected(state, socketId) {
+    state.socketId = socketId;
+  },
+
+  socketDisconnected(state) {
+    state.socketId = "";
   },
 
   setDarkMode(state, newValue: boolean) {
