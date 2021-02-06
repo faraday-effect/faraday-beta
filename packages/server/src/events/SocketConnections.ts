@@ -7,11 +7,11 @@ export type SimpleAccount = Pick<
   'id' | 'firstName' | 'lastName' | 'email'
 >;
 
-class Connection {
+class ConnectionDetails {
   private readonly addDate: Date = null;
   private account: SimpleAccount = null;
 
-  constructor(private client: Client) {
+  constructor(private clientId: string) {
     this.addDate = new Date();
   }
 
@@ -24,7 +24,7 @@ class Connection {
   }
 
   toString() {
-    const segments = [this.addDate.toISOString(), this.client.id];
+    const segments = [this.addDate.toISOString(), this.clientId];
     if (this.isLoggedIn) {
       segments.push(
         this.account.firstName,
@@ -43,30 +43,30 @@ export class SocketConnections {
   private readonly connectionMap;
 
   constructor() {
-    this.connectionMap = new Map<string, Connection>();
+    this.connectionMap = new Map<string, ConnectionDetails>();
   }
 
-  addConnection(client: Client) {
-    if (this.connectionMap.has(client.id)) {
-      throw new Error(`Client ${client.id} already in map`);
+  addConnection(clientId: string) {
+    if (this.connectionMap.has(clientId)) {
+      throw new Error(`Client ${clientId} already in map`);
     }
-    this.connectionMap.set(client.id, new Connection(client));
+    this.connectionMap.set(clientId, new ConnectionDetails(clientId));
   }
 
-  private assertInMap(client: Client): void {
-    if (!this.connectionMap.has(client.id)) {
-      throw new Error(`No client ${client.id} in map`);
+  private assertInMap(clientId: string): void {
+    if (!this.connectionMap.has(clientId)) {
+      throw new Error(`No client ${clientId} in map`);
     }
   }
 
-  findConnection(client: Client): Connection {
-    this.assertInMap(client);
-    return this.connectionMap.get(client.id);
+  findConnection(clientId: string): ConnectionDetails {
+    this.assertInMap(clientId);
+    return this.connectionMap.get(clientId);
   }
 
-  removeConnection(client: Client) {
-    this.assertInMap(client);
-    this.connectionMap.delete(client.id);
+  removeConnection(clientId: string) {
+    this.assertInMap(clientId);
+    this.connectionMap.delete(clientId);
   }
 
   get count() {
@@ -74,7 +74,7 @@ export class SocketConnections {
   }
 
   allConnections() {
-    return Array.from(this.connectionMap, ([_k, v]) => v);
+    return [...this.connectionMap.values()];
   }
 
   loggedInConnections() {

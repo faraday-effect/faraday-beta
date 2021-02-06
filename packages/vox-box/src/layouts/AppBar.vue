@@ -41,7 +41,7 @@
 
     <v-btn
       text
-      href="https://github.com/faraday-effect/time-machine"
+      href="https://github.com/faraday-effect/faraday"
       target="_blank"
     >
       <v-icon>mdi-github</v-icon>
