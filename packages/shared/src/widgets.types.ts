@@ -1,8 +1,8 @@
-export enum WidgetTypes {
-  AgreeDisagree = "AGREE_DISAGREE",
-  ChooseOne = "CHOOSE_ONE",
-  ChooseMany = "CHOOSE_MANY",
-  ShortAnswer = "SHORT_ANSWER",
+export enum WidgetNames {
+  ThumbsUpDown = "ThumbsUpDown",
+  ChooseOne = "ChooseOne",
+  ChooseMany = "ChooseMany",
+  ShortAnswer = "ShortAnswer",
 }
 
 export enum ThumbDirection {
@@ -21,27 +21,27 @@ interface PromptWithChoices {
 }
 
 export interface ChooseOneContent extends PromptWithChoices {
-  type: WidgetTypes.ChooseOne;
+  widgetName: WidgetNames.ChooseOne;
 }
 
 export interface ChooseManyContent extends PromptWithChoices {
-  type: WidgetTypes.ChooseMany;
+  widgetName: WidgetNames.ChooseMany;
 }
 
-export interface AgreeDisagreeContent {
-  type: WidgetTypes.AgreeDisagree;
+export interface ThumbsUpDownContent {
+  widgetName: WidgetNames.ThumbsUpDown;
   prompt: string;
   upText: string;
   downText: string;
 }
 
 export interface ShortAnswerContent {
-  type: WidgetTypes.ShortAnswer;
+  widgetName: WidgetNames.ShortAnswer;
   prompt: string;
 }
 
 export type WidgetContent =
-  | AgreeDisagreeContent
+  | ThumbsUpDownContent
   | ChooseManyContent
   | ChooseOneContent
   | ShortAnswerContent;

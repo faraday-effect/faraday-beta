@@ -11,6 +11,7 @@ import Password from "@/pages/Password.vue";
 import Roles from "@/pages/Roles.vue";
 import SocketStuff from "@/pages/SocketStuff.vue";
 import Home from "@/pages/Home.vue";
+import Poll from "@/pages/Poll.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,8 @@ const routes = [
   { path: "/", name: "home", component: Home },
 
   { path: "/socket-stuff", name: "socket-stuff", component: SocketStuff },
+
+  { path: "/poll", name: "poll", component: Poll },
 
   // Available to any logged-in account
 

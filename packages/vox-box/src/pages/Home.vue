@@ -32,10 +32,10 @@
 import Vue from "vue";
 import BigButton from "@/widgets/BigButton.vue";
 import ShortAnswer from "@/widgets/ShortAnswer.vue";
-import { OneChoice } from "../../../../shared/widgets.types";
 import ChooseOne from "@/widgets/ChooseOne.vue";
 import ChooseMany from "@/widgets/ChooseMany.vue";
 import ThumbsUpDown from "@/widgets/ThumbsUpDown.vue";
+import { OneChoice, WidgetContent } from "shared";
 
 export default Vue.extend({
   name: "Home",

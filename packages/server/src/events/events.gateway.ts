@@ -9,7 +9,7 @@ import {
 } from '@nestjs/websockets';
 import { Client, Server } from 'socket.io';
 import { SimpleAccount, SocketConnections } from './SocketConnections';
-import { ChooseOneContent, WidgetTypes } from 'shared';
+import { ChooseOneContent, WidgetNames } from 'shared';
 
 @WebSocketGateway()
 export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -28,6 +28,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       'currentConnections',
       this.socketConnections.allConnections(),
     );
+    this.sendChooseOne();
   }
 
   handleConnection(client: Client, ...args): void {
@@ -51,7 +52,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   sendChooseOne() {
     const chooseOneContent: ChooseOneContent = {
-      type: WidgetTypes.ChooseOne,
+      widgetName: WidgetNames.ChooseOne,
       prompt: 'What is your favorite color?',
       choices: [
         { key: 'r', value: 'Red' },
@@ -60,5 +61,6 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       ],
     };
     this.server.emit('poll', chooseOneContent);
+    console.log('EMITTED', chooseOneContent);
   }
 }

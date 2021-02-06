@@ -29,7 +29,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BigButton from "@/widgets/BigButton.vue";
-import { ThumbDirection } from "../../../../shared/widgets.types";
+import { ThumbDirection } from "shared";
 
 export default Vue.extend({
   name: "ThumbsUpDown",

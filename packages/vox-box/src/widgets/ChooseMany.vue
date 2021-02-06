@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { OneChoice } from "../../../../shared/widgets.types";
+import { OneChoice } from "shared";
 
 export default Vue.extend({
   name: "ChooseMany",
